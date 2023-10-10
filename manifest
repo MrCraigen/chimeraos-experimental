@@ -1,8 +1,8 @@
 #! /bin/bash
 
 export VERSION="45"
-export SYSTEM_DESC="ChimeraOS"
-export SYSTEM_NAME="chimeraos"
+export SYSTEM_DESC="StreamBox"
+export SYSTEM_NAME="streambox"
 export USERNAME="gamer"
 export SIZE="10000MB"
 export ARCHIVE_DATE=$(date -d 'yesterday' +%Y/%m/%d)
@@ -22,15 +22,11 @@ export PACKAGES="\
 	cifs-utils \
 	diffutils \
 	dkms \
-	distrobox \
 	dmidecode \
 	dosbox \
-	eog \
-	epiphany \
 	ethtool \
 	evtest \
 	ffmpeg \
-	file-roller \
 	firejail \
 	flatpak \
 	fmt \
@@ -39,21 +35,9 @@ export PACKAGES="\
 	fwupd \
 	gamemode \
 	git \
-	gnome-console \
-	gnome-control-center \
-	gnome-disk-utility \
-	gnome-keyring \
-	gnome-session \
-	gnome-shell \
-	gnome-software \
-	gnome-text-editor \
 	gst-plugin-pipewire \
 	haveged \
 	htop \
-	intel-gpu-tools \
-	intel-media-driver \
-	intel-ucode \
-	intel-undervolt \
 	lib32-curl \
 	lib32-fontconfig \
 	lib32-freetype2 \
@@ -99,7 +83,6 @@ export PACKAGES="\
 	mesa-demos \
 	modemmanager \
 	nano \
-	nautilus \
 	networkmanager \
 	nfs-utils \
 	noto-fonts-emoji \
@@ -133,9 +116,8 @@ export PACKAGES="\
 	wireplumber \
 	wqy-zenhei \
 	xdg-desktop-portal \
-	xdg-desktop-portal-gnome \
 	xdg-desktop-portal-wlr \
-	xdg-user-dirs-gtk \
+	xdg-user-dirs \
 	xf86-video-amdgpu \
 	xorg-server \
 "
@@ -161,8 +143,6 @@ export PACKAGE_OVERRIDES="\
 # Which is often the same as the package name but it can be different.
 # Check on the AUR webpage if you are unsure
 export AUR_PACKAGES="\
-	ayaled \
-	ayn-platform-dkms-git \
 	bcm20702a1-firmware \
 	boxtron \
 	chimera \
@@ -171,7 +151,6 @@ export AUR_PACKAGES="\
 	frzr \
 	gamescope-plus \
 	gamescope-session-git \
-	handygccs-git \
 	hhfc-git \
 	legendary \
 	lib32-gamescope-plus \
@@ -197,6 +176,8 @@ export AUR_PACKAGES="\
 	ryzenadj-git \
 	ryzenadj-controller-git \
 	rz608-fix-git \
+	sunshine \
+	steam_notif_daemon \
 	steam-removable-media-git \
 	wyvern \
 	zenergy-dkms-git \
@@ -221,7 +202,9 @@ export SERVICES="\
 export USER_SERVICES="\
 	chimera.service \
 	gamemoded.service \
+	pipewire \
 	ryzen-tctl \
+	sunshine.service \
 	steam-patch.service \
 "
 
@@ -274,13 +257,6 @@ postinstallhook() {
 	find /usr/share/applications/* | \
 	grep -v org.chimeraos.Gamescope.desktop | \
 	grep -v org.chimeraos.app.desktop | \
-	grep -v org.gnome.Console.desktop | \
-	grep -v org.gnome.DiskUtility.desktop | \
-	grep -v org.gnome.FileRoller.desktop | \
-	grep -v org.gnome.Nautilus.desktop | \
-	grep -v org.gnome.Settings.desktop | \
-	grep -v org.gnome.Software.desktop | \
-	grep -v org.gnome.TextEditor.desktop | \
 	grep -v steam.desktop | \
 	xargs -I {} sh -c "echo NoDisplay=true >> {}"
 
