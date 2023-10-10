@@ -149,7 +149,6 @@ export AUR_PACKAGES="\
 	chimeraos-device-quirks-git \
 	downgrade \
 	frzr \
-	gamescope-plus \
 	gamescope-session-git \
 	hhfc-git \
 	legendary \
