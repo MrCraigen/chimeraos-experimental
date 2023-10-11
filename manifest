@@ -194,6 +194,7 @@ export SERVICES="\
 	home-swapfile.swap \
 	lightdm \
 	ryzenadj-controller \
+	sunshine \
 	sshd \
 	systemd-timesyncd \
 	swapfile \
@@ -204,7 +205,6 @@ export USER_SERVICES="\
 	gamemoded.service \
 	pipewire \
 	ryzen-tctl \
-	sunshine.service \
 	steam-patch.service \
 "
 
@@ -252,17 +252,6 @@ postinstallhook() {
 	rm /usr/bin/dolphin-tool
 	rm /usr/share/applications/dolphin-emu.desktop
 
-	# clean up desktop shortcuts
-	sed -i -e 's/Name=Steam (Runtime)/Name=Steam/' /usr/share/applications/steam.desktop
-	find /usr/share/applications/* | \
-	grep -v org.chimeraos.Gamescope.desktop | \
-	grep -v org.chimeraos.app.desktop | \
-	grep -v steam.desktop | \
-	xargs -I {} sh -c "echo NoDisplay=true >> {}"
-
 	# force -steamdeck option in desktop mode to prevent constant steam updates
 	sed -i 's,Exec=/usr/bin/steam-runtime,Exec=/usr/bin/steam-runtime -steamdeck,' /usr/share/applications/steam.desktop
-
-	# set permissions for intel_gpu_top and mangohud
-	setcap cap_perfmon=+ep /usr/bin/intel_gpu_top
 }
