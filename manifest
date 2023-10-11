@@ -189,8 +189,6 @@ export SERVICES="\
 	bluetooth \
 	bluetooth-workaround \
 	fstrim.timer \
-	handycon \
-	haveged \
 	home-swapfile.swap \
 	lightdm \
 	ryzenadj-controller \
