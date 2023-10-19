@@ -174,8 +174,6 @@ export AUR_PACKAGES="\
 	rtl8821au-dkms-git \
 	rtw89-dkms-git \
 	ryzenadj-git \
-	ryzenadj-controller-git \
-	rz608-fix-git \
 	sunshine \
 	steam_notif_daemon \
 	steam-removable-media-git \
@@ -191,7 +189,6 @@ export SERVICES="\
 	fstrim.timer \
 	home-swapfile.swap \
 	lightdm \
-	ryzenadj-controller \
 	sunshine \
 	sshd \
 	systemd-timesyncd \
@@ -202,7 +199,6 @@ export USER_SERVICES="\
 	chimera.service \
 	gamemoded.service \
 	pipewire \
-	ryzen-tctl \
 	steam-patch.service \
 "
 
