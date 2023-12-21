@@ -155,6 +155,7 @@ export AUR_PACKAGES="\
 	legendary \
 	lib32-gamescope-plus \
 	lib32-gperftools \
+        lib32-vulkan-nouveau-git \
 	libretro-dosbox-pure-git \
 	libretro-opera-git \
 	libretro-prosystem-git \
@@ -177,6 +178,7 @@ export AUR_PACKAGES="\
 	sunshine \
 	steam_notif_daemon \
 	steam-removable-media-git \
+        vulkan-nouveau-git \
 	wyvern \
 	zenergy-dkms-git \
 "
@@ -243,7 +245,6 @@ postinstallhook() {
 	# remove dolphin standalone emulator files (only need /usr/share/dolphin-emu/sys)
 	rm /usr/bin/dolphin-emu
 	rm /usr/bin/dolphin-emu-nogui
-	rm /usr/bin/dolphin-tool
 	rm /usr/share/applications/dolphin-emu.desktop
 
 	# force -steamdeck option in desktop mode to prevent constant steam updates
