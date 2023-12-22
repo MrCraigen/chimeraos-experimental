@@ -1,8 +1,8 @@
 #! /bin/bash
 
 export VERSION="46"
-export SYSTEM_DESC="ChimeraOS"
-export SYSTEM_NAME="chimeraos"
+export SYSTEM_DESC="ChimeraOSBigScreen"
+export SYSTEM_NAME="chimeraosbigscreen"
 export USERNAME="gamer"
 export SIZE="10000MB"
 export ARCHIVE_DATE=$(date -d 'yesterday' +%Y/%m/%d)
@@ -14,10 +14,12 @@ export KERNEL_PACKAGE="linux-chimeraos"
 export KERNEL_PACKAGE_ORIGIN="local"
 
 export PACKAGES="\
+	ark \
 	accountsservice \
 	alsa-firmware \
 	alsa-utils \
 	amd-ucode \
+	aura-browser \
 	bash-completion \
 	broadcom-wl-dkms \
 	bzip2 \
@@ -26,11 +28,13 @@ export PACKAGES="\
 	dkms \
 	distrobox \
 	dmidecode \
+	dolphin \
+	dolphin-plugins \
 	dosbox \
 	efibootmgr \
-	epiphany \
 	ethtool \
 	evtest \
+	falkon \
 	ffmpeg \
 	file \
 	ffmpegthumbnailer \
@@ -42,16 +46,6 @@ export PACKAGES="\
 	fwupd \
 	gamemode \
 	git \
-	gnome-browser-connector \
-	gnome-console \
-	gnome-control-center \
-	gnome-disk-utility \
-	gnome-keyring \
-	gnome-session \
-	gnome-shell \
-	gnome-software \
-	gnome-system-monitor \
-	gnome-text-editor \
 	gst-plugin-pipewire \
 	gzip \
 	haveged \
@@ -60,6 +54,9 @@ export PACKAGES="\
 	intel-media-driver \
 	intel-ucode \
 	intel-undervolt \
+	kdeconnect \
+	kdialog \
+	konsole \
 	less \
 	lib32-curl \
 	lib32-fontconfig \
@@ -98,7 +95,6 @@ export PACKAGES="\
 	libva-vdpau-driver \
 	libxcrypt-compat \
 	libxss \
-	lightdm \
 	linux-firmware \
 	liquidctl \
 	logrotate \
@@ -108,13 +104,16 @@ export PACKAGES="\
 	mesa-demos \
 	modemmanager \
 	nano \
-	nautilus \
 	networkmanager \
 	nfs-utils \
 	noto-fonts-emoji \
 	nss-mdns \
 	openal \
 	openssh \
+	plank-player \
+	plasma \
+	plasma-bigscreen \
+	plasma-wayland-session \
 	p7zip \
 	pipewire \
 	pipewire-alsa \
@@ -126,6 +125,7 @@ export PACKAGES="\
 	python-inotify-simple \
 	retroarch \
 	rsync \
+	sddm \
 	smbclient \
 	sof-firmware \
 	sshfs \
@@ -147,7 +147,7 @@ export PACKAGES="\
 	wireplumber \
 	wqy-zenhei \
 	xdg-desktop-portal \
-	xdg-desktop-portal-gnome \
+	xdg-desktop-portal-kde \
 	xdg-desktop-portal-wlr \
 	xdg-user-dirs-gtk \
 	xf86-video-amdgpu \
@@ -198,6 +198,7 @@ export AUR_PACKAGES="\
 	libretro-prosystem-git \
 	libretro-stella2014-git \
 	libretro-virtualjaguar-git \
+        lib32-vulkan-nouveau-git \
 	kanit-font \
 	nintendo-udev \
 	opengamepadui-bin \
@@ -216,6 +217,7 @@ export AUR_PACKAGES="\
 	ryzenadj-git \
 	steam_notif_daemon \
 	steam-removable-media-git \
+        vulkan-nouveau-git \
 	wyvern \
 	zenergy-dkms-git \
 "
@@ -285,7 +287,6 @@ postinstallhook() {
 	rm /usr/bin/dolphin-emu
 	rm /usr/bin/dolphin-emu-nogui
 	# dolphin-tool is no longer created in new builds?
-	#rm /usr/bin/dolphin-tool
 	rm /usr/share/applications/dolphin-emu.desktop
 
 	# clean up desktop shortcuts
@@ -293,13 +294,6 @@ postinstallhook() {
 	find /usr/share/applications/* | \
 	grep -v org.chimeraos.Gamescope.desktop | \
 	grep -v org.chimeraos.app.desktop | \
-	grep -v org.gnome.Console.desktop | \
-	grep -v org.gnome.DiskUtility.desktop | \
-	grep -v org.gnome.FileRoller.desktop | \
-	grep -v org.gnome.Nautilus.desktop | \
-	grep -v org.gnome.Settings.desktop | \
-	grep -v org.gnome.Software.desktop | \
-	grep -v org.gnome.TextEditor.desktop | \
 	grep -v steam.desktop | \
 	xargs -I {} sh -c "echo NoDisplay=true >> {}"
 
